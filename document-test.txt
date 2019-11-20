@@ -1,0 +1,51 @@
+
+Function Name: * 2
+ResponsiveReactGridLayout
+
+Parameters: *1
+DocString: *1
+APICalls: *.8
+
+
+
+
+// Code stop words, invocation start with these, ignore them
+.map, .reduce, forEach, next, .apply, .call, .split, .join, .toLowerCase, .toUpperCase, this, .push, .concat 
+
+blockname
+  if Classname or parentFunctionName
+    calssname
+
+  if Default export:
+    if filename === index:
+      parentFolder
+    else:
+      filename
+  else:
+    if filename !== blockname and className !== filename:
+      filename
+    blockname
+
+descritpion DocString
+  descritpion DocString // Apply standard stop words
+
+params
+  params
+  if DocString params
+    DocString params // Apply standard stop words
+
+if variableObjectProperties:
+  set(variableObjectProperties)
+
+if JSX:
+  set(JSX.split())
+
+if !Class && APICalls:
+  set(APICalls.split())
+
+if Class
+  set(methodName.split(.))
+  set(propertyNames.split(.))
+
+  
+
