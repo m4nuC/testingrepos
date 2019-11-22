@@ -19,34 +19,34 @@ function functionWithInlineBodyComment() {
  * This is an arrow function
  */
 const arrowFunction = someArg => {
-  const someVar = "Jon Doe";
+  const someVar = 'Jon Doe';
 
   // This comment is not useful as very local
-  const someOtherVar = "Jane Doe";
+  const someOtherVar = 'Jane Doe';
 
-  return "something";
+  return 'something';
 };
 
 // This is function expression with
 // inline comment on a few line
 // above it's declaration
 const functionExpression = function() {
-  const testVar = "Jon Doe";
-  const testVar2 = "Jane Doe";
-  return "something";
+  const testVar = 'Jon Doe';
+  const testVar2 = 'Jane Doe';
+  return 'something';
 };
 
 // This is a direct named exprot
 export const directNamedExport = function(iAmAParam) {
-  const testVar = "Jon Doe";
-  const testVar2 = "Jane Doe";
-  return "something";
+  const testVar = 'Jon Doe';
+  const testVar2 = 'Jane Doe';
+  return 'something';
 };
 
 // This is a default export function
 // it should then get the name of the file
 export default function() {
-  const testVar = "Jon Doe";
-  const testVar2 = "Jane Doe";
-  return "something";
+  const testVar = 'Jon Doe';
+  const testVar2 = 'Jane Doe';
+  return 'something';
 }
