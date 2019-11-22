@@ -1,35 +1,36 @@
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Transition } from 'react-transition-group';
-import { duration } from '../styles/transitions';
-import withStyles from '../styles/withStyles';
-import { getTransitionProps } from '../transitions/utils';
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
+
+import { Transition } from "react-transition-group";
+import { duration } from "../styles/transitions";
+import withStyles from "../styles/withStyles";
+import { getTransitionProps } from "../transitions/utils";
 
 export const styles = theme => ({
   /* Styles applied to the container element. */
   container: {
     height: 0,
-    overflow: 'hidden',
-    transition: theme.transitions.create('height')
+    overflow: "hidden",
+    transition: theme.transitions.create("height")
   },
   /* Styles applied to the container element when the transition has entered. */
   entered: {
-    height: 'auto',
-    overflow: 'visible'
+    height: "auto",
+    overflow: "visible"
   },
   /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
   hidden: {
-    visibility: 'hidden'
+    visibility: "hidden"
   },
   /* Styles applied to the outer wrapper element. */
   wrapper: {
     // Hack to get children with a negative margin to not falsify the height computation.
-    display: 'flex'
+    display: "flex"
   },
   /* Styles applied to the inner wrapper element. */
   wrapperInner: {
-    width: '100%'
+    width: "100%"
   }
 });
 
@@ -49,8 +50,8 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     children,
     classes,
     className,
-    collapsedHeight = '0px',
-    component: Component = 'div',
+    collapsedHeight = "0px",
+    component: Component = "div",
     in: inProp,
     onEnter,
     onEntered,
@@ -88,17 +89,17 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     const { duration: transitionDuration } = getTransitionProps(
       { style, timeout },
       {
-        mode: 'enter'
+        mode: "enter"
       }
     );
 
-    if (timeout === 'auto') {
+    if (timeout === "auto") {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       autoTransitionDuration.current = duration2;
     } else {
       node.style.transitionDuration =
-        typeof transitionDuration === 'string'
+        typeof transitionDuration === "string"
           ? transitionDuration
           : `${transitionDuration}ms`;
     }
@@ -111,7 +112,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   };
 
   const handleEntered = node => {
-    node.style.height = 'auto';
+    node.style.height = "auto";
 
     if (onEntered) {
       onEntered(node);
@@ -137,17 +138,17 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     const { duration: transitionDuration } = getTransitionProps(
       { style, timeout },
       {
-        mode: 'exit'
+        mode: "exit"
       }
     );
 
-    if (timeout === 'auto') {
+    if (timeout === "auto") {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       autoTransitionDuration.current = duration2;
     } else {
       node.style.transitionDuration =
-        typeof transitionDuration === 'string'
+        typeof transitionDuration === "string"
           ? transitionDuration
           : `${transitionDuration}ms`;
     }
@@ -160,7 +161,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   };
 
   const addEndListener = (_, next) => {
-    if (timeout === 'auto') {
+    if (timeout === "auto") {
       timer.current = setTimeout(next, autoTransitionDuration.current || 0);
     }
   };
@@ -174,7 +175,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       onExit={handleExit}
       onExiting={handleExiting}
       addEndListener={addEndListener}
-      timeout={timeout === 'auto' ? null : timeout}
+      timeout={timeout === "auto" ? null : timeout}
       {...other}
     >
       {(state, childProps) => (
@@ -182,9 +183,9 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
           className={clsx(
             classes.container,
             {
-              [classes.entered]: state === 'entered',
+              [classes.entered]: state === "entered",
               [classes.hidden]:
-                state === 'exited' && !inProp && collapsedHeight === '0px'
+                state === "exited" && !inProp && collapsedHeight === "0px"
             },
             className
           )}
@@ -268,7 +269,7 @@ Collapse.propTypes = {
   timeout: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
-    PropTypes.oneOf(['auto'])
+    PropTypes.oneOf(["auto"])
   ])
 };
 
@@ -276,5 +277,5 @@ Collapse.muiSupportAuto = true;
 
 export default withStyles(styles, {
   withTheme: true,
-  name: 'MuiCollapse'
+  name: "MuiCollapse"
 })(Collapse);
